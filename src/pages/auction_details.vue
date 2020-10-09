@@ -25,30 +25,40 @@
 
     <q-card class="my-card q-pa-md text-primary">
       <q-card-section>
+        <div class="text-h4 q-mb-xs text-primary text-center">
+          <i class="fas fa-car"></i> <b> {{ car.vehicle_name }}</b>
+        </div>
+               <q-separator inset="item" />
+        <div class=" q-mb-xs">
+          <i class="fas fa-tachometer-alt"></i> Odometer::
+          {{ car.odometer_value }}{{ car.odometer_type.toUpperCase() }}
+        </div>
+        <q-separator inset />
+        <div class="text-h6 q-mb-xs">
+          <i class="far fa-calendar-alt"></i> Year::{{ car.year }}
+        </div>
+        <q-separator inset />
 
-        <div class="text-h6 q-mb-xs text-primary"><i class="fas fa-car"></i> <b> Car Make:: {{ car.vehicle_name }}</b></div>
-        <hr />
-        <div class="text-h6 q-mb-xs"><i class="fas fa-tachometer-alt"></i> Odometer::
-          {{ car.odometer_value }}{{ car.odometer_type.toUpperCase() }}</div>
-        <hr />
-        <div class="text-h6 q-mb-xs"> <i class="far fa-calendar-alt"></i> Year::{{ car.year }}</div>
-        <hr />
-
-        <div class="text-h6 q-mb-xs"><i class="fas fa-palette"></i> Color:: {{ car.color }}</div>
-        <hr />
-         <hr >
-        <strong class="text-primary text-h5">Current Bid: <b> ${{ car.current_bid_value }} </b>  </strong>
-          <q-btn outline color="primary" text-color="primary">
+        <div class="text-h6 q-mb-xs">
+          <i class="fas fa-palette"></i> Color:: {{ car.color }}
+        </div>
+        <q-separator inset />
+        <strong class="text-primary text-h5"
+          >Current Bid: <b> ${{ car.current_bid_value }} </b>
+        </strong>
+        <q-btn outline color="primary" text-color="primary">
           <b>Bid Now</b>
-          </q-btn>
-            <hr >
-         <strong class="text-h5">Buy Now for: <b>  ${{ car.buy_it_now }} </b> </strong>
-          <q-btn color="primary" outline text-color="primary">
-           Buy it Now
-          </q-btn>
+        </q-btn>
+        <hr />
+        <strong class="text-h5"
+          >Buy Now for: <b> ${{ car.buy_it_now }} </b>
+        </strong>
+        <q-btn color="primary" outline text-color="primary">
+          Buy it Now
+        </q-btn>
         <q-card-actions>
           <q-space />
-        Click for more Details
+          Click for more Details
           <q-btn
             color="primary"
             round
@@ -67,9 +77,13 @@
                  <i class="far fa-calendar-alt"></i><b> Sale Date: </b> {{ car.sale_date }}
               </div> -->
               <hr />
-              <div class="text-h6 q-mb-xs">Vehicle Type::{{ car.vehicle_type }}</div>
-              <hr>
-              <div class="text-h6 q-mb-xs">Body Style::{{ car.body_style }}</div>
+              <div class="text-h6 q-mb-xs">
+                Vehicle Type::{{ car.vehicle_type }}
+              </div>
+              <hr />
+              <div class="text-h6 q-mb-xs">
+                Body Style::{{ car.body_style }}
+              </div>
               <hr />
               <div class="text-h6 q-mb-xs">
                 Retail Value:: <b>${{ car.retail_value }}</b>
@@ -103,7 +117,7 @@ export default {
       slide: 1,
       autoplay: true,
       data: [],
-      car: {},
+      car: {}
       // onItemClick:{}
     };
   },
@@ -111,15 +125,13 @@ export default {
   methods: {
     get_details() {
       axios
-        .get(
-          "https://www.salvagebid.com/rest-api/v2/lots/" + this.selected_car
-        )
+        .get("https://www.salvagebid.com/rest-api/v2/lots/" + this.selected_car)
         .then(response => {
           this.car = response.data.lot;
         });
     },
-    onItemClick () {
-      console.log('Clicked on an Item')
+    onItemClick() {
+      console.log("Clicked on an Item");
     }
   },
 
